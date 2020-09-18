@@ -66,6 +66,7 @@ public:
 				p.SetPos(p.GetPosX(), ScreenHeight() / 2 - p.height);
 				for (int plIndex = 0; plIndex < platforms.size(); plIndex++) {
 					platforms[plIndex].MoveDown(-p.GetVelY());
+					platforms[plIndex].CheckPos(ScreenHeight(), ScreenWidth());
 				}
 			}
 		}

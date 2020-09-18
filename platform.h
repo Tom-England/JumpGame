@@ -14,6 +14,7 @@ public:
 	void Draw(olc::PixelGameEngine* pge);
 	void SetPos(float _x, float _y);
 	void MoveDown(float amount);
+	void CheckPos(int ScreenHeight, int ScreenWidth);
 	float GetPosX();
 	float GetPosY();
 };

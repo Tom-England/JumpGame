@@ -18,6 +18,11 @@ void platform::SetPos(float _x, float _y) {
 void platform::MoveDown(float amount) {
 	y += amount;
 }
+void platform::CheckPos(int ScreenHeight, int ScreenWidth) {
+	if (y > ScreenHeight) {
+		SetPos(rand() % (ScreenWidth - 60) + 10, 0);
+	}
+}
 float platform::GetPosX() {
 	return x;
 }
