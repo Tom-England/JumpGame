@@ -27,6 +27,7 @@ public:
 	{
 		// Called once at the start, so create things here
 		p.SetPos(210, 0);
+		p.SetStrafeSpeed(ScreenWidth());
 		platforms.push_back(platform(200, 200));
 		return true;
 	}
@@ -50,10 +51,20 @@ public:
 				p.jump();
 			}
 		}
+		if (GetKey(olc::Key::A).bHeld) {
+			p.strafe(-1, ScreenWidth(), fElapsedTime);
+		}
+		if (GetKey(olc::Key::D).bHeld) {
+			p.strafe(1, ScreenWidth(), fElapsedTime);
+		}
 
 		if (!grounded) {
 			p.RunPhysics(fElapsedTime);
 		}
+		else {
+			p.velY = 0;
+		}
+
 		p.Draw(this);
 		return true;
 	}
