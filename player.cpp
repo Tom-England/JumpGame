@@ -8,6 +8,11 @@ player::player(float _x, float _y) {
 	x = _x;
 	y = _y;
 }
+void player::RunPhysics(float dTime) {
+	velY += G * dTime;
+	if (velY > maxVel) { velY = maxVel; }
+	y += velY;
+}
 void player::Draw(olc::PixelGameEngine* pge) {
 	pge->FillRect(olc::vf2d( x, y ), { 25, 50 }, olc::RED);
 }

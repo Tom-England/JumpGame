@@ -26,6 +26,7 @@ public:
 	{
 		// called once per frame
 		Clear(olc::WHITE);
+		p.RunPhysics(fElapsedTime);
 		p.Draw(this);
 		return true;
 	}
