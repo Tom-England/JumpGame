@@ -24,7 +24,7 @@ public:
 	bool flipGrounded = false;
 	int platMax = 14;
 
-	int score = 0;
+	float score = 0;
 
 	bool OnUserCreate() override
 	{
@@ -63,10 +63,10 @@ public:
 			if (p.GetPosY() < ScreenHeight() / 2 - p.height) {
 				p.SetPos(p.GetPosX(), ScreenHeight() / 2 - p.height);
 				for (int plIndex = 0; plIndex < platforms.size(); plIndex++) {
-					platforms[plIndex].MoveDown(-p.GetVelY());
+					platforms[plIndex].MoveDown(-p.GetVelY() * fElapsedTime);
 					platforms[plIndex].CheckPos(ScreenHeight(), ScreenWidth());
 				}
-				score++;
+				score += fElapsedTime;
 				std::cout << score << std::endl;
 			}
 		}
