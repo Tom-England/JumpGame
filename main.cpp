@@ -22,14 +22,15 @@ public:
 
 	bool grounded = false;
 	bool flipGrounded = false;
+	int platMax = 10;
 
 	bool OnUserCreate() override
 	{
 		// Called once at the start, so create things here
 		p.SetPos(210, 0);
 		p.SetStrafeSpeed(ScreenWidth());
-		for (int platCount = 0; platCount < 15; platCount++) {
-			platforms.push_back(platform(rand() % (ScreenWidth() - 60) + 10, ScreenHeight()/15 * platCount));
+		for (int platCount = 0; platCount < platMax; platCount++) {
+			platforms.push_back(platform(rand() % (ScreenWidth() - 60) + 10, ScreenHeight()/platMax * platCount));
 		}
 		
 		return true;
@@ -72,6 +73,8 @@ public:
 		}
 		else {
 			p.velY = 0;
+			grounded = false;
+			p.jump();
 		}
 		for (auto pl : platforms) {
 			pl.Draw(this);
