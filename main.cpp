@@ -1,5 +1,7 @@
 #define OLC_PGE_APPLICATION
 #include "olcPixelGameEngine.h"
+#include "player.h"
+#include <iostream>
 
 // Override base class with your custom functionality
 class Game : public olc::PixelGameEngine
@@ -12,6 +14,8 @@ public:
 	}
 
 public:
+	//player p = player((float)ScreenWidth()/2.0f, (float)ScreenHeight()/2.0f);
+	player p;
 	bool OnUserCreate() override
 	{
 		// Called once at the start, so create things here
@@ -22,6 +26,7 @@ public:
 	{
 		// called once per frame
 		Clear(olc::WHITE);
+		p.Draw(this);
 		return true;
 	}
 };
