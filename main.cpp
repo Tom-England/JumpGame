@@ -48,12 +48,6 @@ public:
 		}
 		grounded = flipGrounded;
 
-		if (GetKey(olc::Key::SPACE).bPressed) {
-			if (grounded) {
-				grounded = false;
-				p.jump();
-			}
-		}
 		if (GetKey(olc::Key::A).bHeld) {
 			p.strafe(-1, ScreenWidth(), fElapsedTime);
 		}
