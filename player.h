@@ -12,6 +12,8 @@ public:
 	int width = 25;
 	int height = 50;
 
+	int jumpForce = -2;
+
 	player();
 	player(float x, float y);
 	void RunPhysics(float dTime);
@@ -20,5 +22,7 @@ public:
 	float GetPosX();
 	float GetPosY();
 	bool isColliding(float x1, float x2, float y1, float y2);
+
+	void jump();
 };
 

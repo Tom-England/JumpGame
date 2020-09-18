@@ -39,3 +39,7 @@ bool player::isColliding(float x1, float x2, float y1, float y2) {
 	}
 	return false;
 }
+
+void player::jump() {
+	velY += jumpForce;
+}

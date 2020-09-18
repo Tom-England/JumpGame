@@ -44,6 +44,13 @@ public:
 		}
 		grounded = flipGrounded;
 
+		if (GetKey(olc::Key::SPACE).bPressed) {
+			if (grounded) {
+				grounded = false;
+				p.jump();
+			}
+		}
+
 		if (!grounded) {
 			p.RunPhysics(fElapsedTime);
 		}
