@@ -54,6 +54,6 @@ void player::jump() {
 void player::strafe(int dir, int maxX, float dTime) {
 	// -1 is left, 1 is right
 	x += strafeSpeed * dir * dTime;
-	if (x < 0) { x = 0; }
-	if (x + width > maxX) { x = maxX - width; }
+	if (x < 0) { x = maxX; }
+	if (x > maxX) { x = 0; }
 }
