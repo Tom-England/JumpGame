@@ -19,9 +19,14 @@ public:
 	//player p = player((float)ScreenWidth()/2.0f, (float)ScreenHeight()/2.0f);
 	player p;
 	std::vector<platform> platforms;
+
+	bool grounded = false;
+	bool flipGrounded = false;
+
 	bool OnUserCreate() override
 	{
 		// Called once at the start, so create things here
+		p.SetPos(210, 0);
 		platforms.push_back(platform(200, 200));
 		return true;
 	}
@@ -30,10 +35,18 @@ public:
 	{
 		// called once per frame
 		Clear(olc::WHITE);
+		flipGrounded = false;
 		for (auto pl : platforms) {
 			pl.Draw(this);
+			if (p.isColliding(pl.x, pl.x + pl.width, pl.y, pl.y + pl.height)) {
+				flipGrounded = true;
+			}
 		}
-		p.RunPhysics(fElapsedTime);
+		grounded = flipGrounded;
+
+		if (!grounded) {
+			p.RunPhysics(fElapsedTime);
+		}
 		p.Draw(this);
 		return true;
 	}

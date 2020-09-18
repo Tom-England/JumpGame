@@ -9,6 +9,8 @@ public:
 	float velY = 0;
 	float x;
 	float y;
+	int width = 25;
+	int height = 50;
 
 	player();
 	player(float x, float y);
@@ -17,5 +19,6 @@ public:
 	void SetPos(float x, float y);
 	float GetPosX();
 	float GetPosY();
+	bool isColliding(float x1, float x2, float y1, float y2);
 };
 

@@ -26,3 +26,16 @@ float player::GetPosX() {
 float player::GetPosY() {
 	return y;
 }
+bool player::isColliding(float x1, float x2, float y1, float y2) {
+	if (x > x1 && x < x2) {
+		if (y + height > y1 && y + height < y2) {
+			return true;
+		}
+	}
+	if (x + width > x1 && x + width < x2) {
+		if (y + height > y1 && y + height < y2) {
+			return true;
+		}
+	}
+	return false;
+}
