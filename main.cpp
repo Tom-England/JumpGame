@@ -22,7 +22,7 @@ public:
 
 	bool grounded = false;
 	bool flipGrounded = false;
-	int platMax = 10;
+	int platMax = 14;
 
 	bool OnUserCreate() override
 	{

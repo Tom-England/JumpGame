@@ -3,7 +3,7 @@
 class player
 {
 public:
-	const float G = 2;
+	const float G = 3;
 	
 	float maxVel = 10;
 	float velY = 0;
