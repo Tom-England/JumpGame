@@ -12,7 +12,8 @@ public:
 	platform(float x, float y);
 
 	void Draw(olc::PixelGameEngine* pge);
-	void SetPos(float x, float y);
+	void SetPos(float _x, float _y);
+	void MoveDown(float amount);
 	float GetPosX();
 	float GetPosY();
 };

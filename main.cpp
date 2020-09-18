@@ -28,7 +28,10 @@ public:
 		// Called once at the start, so create things here
 		p.SetPos(210, 0);
 		p.SetStrafeSpeed(ScreenWidth());
-		platforms.push_back(platform(200, 200));
+		for (int platCount = 0; platCount < 15; platCount++) {
+			platforms.push_back(platform(rand() % (ScreenWidth() - 60) + 10, ScreenHeight()/15 * platCount));
+		}
+		
 		return true;
 	}
 
@@ -38,7 +41,6 @@ public:
 		Clear(olc::WHITE);
 		flipGrounded = false;
 		for (auto pl : platforms) {
-			pl.Draw(this);
 			if (p.isColliding(pl.x, pl.x + pl.width, pl.y, pl.y + pl.height)) {
 				flipGrounded = true;
 			}
@@ -60,11 +62,19 @@ public:
 
 		if (!grounded) {
 			p.RunPhysics(fElapsedTime);
+			if (p.GetPosY() < ScreenHeight() / 2 - p.height) {
+				p.SetPos(p.GetPosX(), ScreenHeight() / 2 - p.height);
+				for (int plIndex = 0; plIndex < platforms.size(); plIndex++) {
+					platforms[plIndex].MoveDown(-p.GetVelY());
+				}
+			}
 		}
 		else {
 			p.velY = 0;
 		}
-
+		for (auto pl : platforms) {
+			pl.Draw(this);
+		}
 		p.Draw(this);
 		return true;
 	}

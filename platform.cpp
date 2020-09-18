@@ -15,6 +15,9 @@ void platform::SetPos(float _x, float _y) {
 	x = _x;
 	y = _y;
 }
+void platform::MoveDown(float amount) {
+	y += amount;
+}
 float platform::GetPosX() {
 	return x;
 }
