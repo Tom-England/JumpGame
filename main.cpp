@@ -20,14 +20,17 @@ public:
 	player p;
 	std::vector<platform> platforms;
 
-	bool grounded = false;
+	bool grounded = true;
 	bool flipGrounded = false;
 	int platMax = 14;
+
+	int score = 0;
 
 	bool OnUserCreate() override
 	{
 		// Called once at the start, so create things here
-		p.SetPos(210, 0);
+		p.SetPos(ScreenWidth()/2, ScreenHeight() - p.height);
+		p.jump();
 		p.SetStrafeSpeed(ScreenWidth());
 		for (int platCount = 0; platCount < platMax; platCount++) {
 			platforms.push_back(platform(rand() % (ScreenWidth() - 60) + 10, ScreenHeight()/platMax * platCount));
@@ -63,6 +66,8 @@ public:
 					platforms[plIndex].MoveDown(-p.GetVelY());
 					platforms[plIndex].CheckPos(ScreenHeight(), ScreenWidth());
 				}
+				score++;
+				std::cout << score << std::endl;
 			}
 		}
 		else {
