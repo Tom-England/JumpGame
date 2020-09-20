@@ -8,12 +8,20 @@ public:
 	int width = 50;
 	int height = 10;
 
+	enum Type { Static, Moving, Collapsing };
+	Type type = Static;
+	int dir;
+
+	olc::Pixel colour = olc::BLUE;
+
 	platform();
 	platform(float x, float y);
 
 	void Draw(olc::PixelGameEngine* pge);
 	void SetPos(float _x, float _y);
 	void MoveDown(float amount);
+	void MoveSide(float amount);
+	void HandleType(float dTime, int ScreenWidth);
 	void CheckPos(int ScreenHeight, int ScreenWidth);
 	float GetPosX();
 	float GetPosY();
