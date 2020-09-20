@@ -44,9 +44,8 @@ public:
 		// called once per frame
 		Clear(olc::WHITE);
 		flipGrounded = false;
-		for (auto pl : platforms) {
+		for (auto &pl : platforms) {
 			pl.HandleType(fElapsedTime, ScreenWidth());
-			if (pl.type == platform::Moving) { pl.SetPos(ScreenWidth()/2, pl.y); }
 			if (p.isColliding(pl.x, pl.x + pl.width, pl.y, pl.y + pl.height)) {
 				flipGrounded = true;
 			}
@@ -69,7 +68,7 @@ public:
 					platforms[plIndex].CheckPos(ScreenHeight(), ScreenWidth());
 				}
 				score += fElapsedTime;
-				//std::cout << score << std::endl;
+				std::cout << "Score: " << score << std::endl;
 			}
 		}
 		else {

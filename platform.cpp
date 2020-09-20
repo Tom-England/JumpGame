@@ -24,14 +24,12 @@ void platform::MoveDown(float amount) {
 	y += amount;
 }
 void platform::MoveSide(float amount) {
-	std::cout << "before moving: " "X = " << x << std::endl;
 	x += amount;
-	std::cout << "Moving by: " << amount << " X = " << x << std::endl;
 }
 void platform::HandleType(float dTime, int ScreenWidth) {
 	switch (type) {
 		case Moving:
-			MoveSide(100 * dir);
+			MoveSide((float)(1 * dir));
 			if (GetPosX() + width >= ScreenWidth - 10 && dir == 1) { dir = -1; }
 			if (GetPosX() <= 10 && dir == -1) { dir = 1; }
 			
