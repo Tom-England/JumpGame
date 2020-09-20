@@ -29,10 +29,9 @@ void platform::MoveSide(float amount) {
 void platform::HandleType(float dTime, int ScreenWidth) {
 	switch (type) {
 		case Moving:
-			MoveSide((float)(1 * dir));
+			MoveSide((float)(100 * dir * dTime));
 			if (GetPosX() + width >= ScreenWidth - 10 && dir == 1) { dir = -1; }
-			if (GetPosX() <= 10 && dir == -1) { dir = 1; }
-			
+			if (GetPosX() <= 10 && dir == -1) { dir = 1; }			
 		break;
 		case Collapsing:
 
