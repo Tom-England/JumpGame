@@ -14,7 +14,9 @@ platform::platform(float _x, float _y) {
 	if (dir == 0) { dir = -1; }
 }
 void platform::Draw(olc::PixelGameEngine* pge) {
-	pge->FillRect(olc::vf2d(x, y), { width, height }, colour);
+	if (GetEnabled()) {
+		pge->FillRect(olc::vf2d(x, y), { width, height }, colour);
+	}
 }
 void platform::SetPos(float _x, float _y) {
 	x = _x;
@@ -45,6 +47,7 @@ void platform::CheckPos(int ScreenHeight, int ScreenWidth) {
 		if (newType <= 70) { type = Static; colour = olc::BLUE; }
 		else if (newType <= 90) { type = Moving; colour = olc::GREEN; }
 		else if (newType <= 95) { type = Collapsing; colour = olc::CYAN; }
+		SetEnabled(true);
 	}
 }
 float platform::GetPosX() {
@@ -52,4 +55,13 @@ float platform::GetPosX() {
 }
 float platform::GetPosY() {
 	return y;
+}
+bool platform::GetEnabled() {
+	return enabled;
+}
+void platform::SetEnabled(bool value) {
+	enabled = value;
+}
+platform::Type platform::GetType() {
+	return type;
 }

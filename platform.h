@@ -11,6 +11,7 @@ public:
 	enum Type { Static, Moving, Collapsing };
 	Type type = Static;
 	int dir;
+	bool enabled = true;
 
 	olc::Pixel colour = olc::BLUE;
 
@@ -25,5 +26,8 @@ public:
 	void CheckPos(int ScreenHeight, int ScreenWidth);
 	float GetPosX();
 	float GetPosY();
+	bool GetEnabled();
+	void SetEnabled(bool value);
+	Type GetType();
 };
 

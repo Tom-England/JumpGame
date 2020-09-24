@@ -3,7 +3,7 @@
 class player
 {
 public:
-	const float G = 300;
+	const float G = 1400;
 	
 	float maxVel = 600;
 	float velY = 0;
@@ -12,8 +12,8 @@ public:
 	int width = 25;
 	int height = 50;
 
-	int jumpForce = -600;
-	int strafeSpeed = 300;
+	int jumpForce = -900;
+	int strafeSpeed = 200;
 
 	player();
 	player(float x, float y);
