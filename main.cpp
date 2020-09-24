@@ -26,6 +26,15 @@ public:
 
 	float score = 0;
 
+	std::unique_ptr<olc::Sprite> sprHero;
+	std::unique_ptr<olc::Sprite> sprPlatform;
+	std::unique_ptr<olc::Sprite> sprBackground;
+	std::unique_ptr<olc::Sprite> sprWaves;
+	std::unique_ptr<olc::Decal> decHero;
+	std::unique_ptr<olc::Decal> decPlatform;
+	std::unique_ptr<olc::Decal> decBackground;
+	std::unique_ptr<olc::Decal> decWaves;
+
 	bool OnUserCreate() override
 	{
 		// Called once at the start, so create things here
@@ -36,13 +45,27 @@ public:
 			platforms.push_back(platform(rand() % (ScreenWidth() - 60) + 10, ScreenHeight()/platMax * platCount));
 		}
 		
+		// Load the sprites
+		
+		sprHero = std::make_unique<olc::Sprite>("hero.png");
+		sprPlatform = std::make_unique<olc::Sprite>("platform.png");
+		sprBackground = std::make_unique<olc::Sprite>("background.png");
+		sprWaves = std::make_unique<olc::Sprite>("waves.png");
+		decHero = std::make_unique<olc::Decal>(sprHero.get());
+		decPlatform = std::make_unique<olc::Decal>(sprPlatform.get());
+		decBackground = std::make_unique<olc::Decal>(sprBackground.get());
+		decWaves = std::make_unique<olc::Decal>(sprWaves.get());
+		SetPixelMode(olc::Pixel::MASK);
+
 		return true;
 	}
 
 	bool OnUserUpdate(float fElapsedTime) override
 	{
 		// called once per frame
-		Clear(olc::WHITE);
+		Clear(olc::BLUE);
+		DrawDecal(olc::vf2d(0, 0), decBackground.get());
+
 		flipGrounded = false;
 		for (auto &pl : platforms) {
 			pl.HandleType(fElapsedTime, ScreenWidth());
@@ -87,9 +110,14 @@ public:
 
 		// Draws objects to screen
 		for (auto pl : platforms) {
-			pl.Draw(this);
+			//pl.Draw(this);
+			if (pl.GetEnabled()) {
+				DrawDecal(olc::vf2d(pl.GetPosX(), pl.GetPosY()), decPlatform.get());
+			}
 		}
-		p.Draw(this);
+		//p.Draw(this);
+		DrawDecal(olc::vf2d(p.GetPosX(), p.GetPosY()), decHero.get());
+		DrawDecal(olc::vf2d(0, ScreenHeight() - sprWaves.get()->height), decWaves.get());
 		return true;
 	}
 };
